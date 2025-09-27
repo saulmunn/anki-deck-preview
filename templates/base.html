@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Anki Deck Preview</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="{{ url_for('index') }}">Anki Deck Preview</a>
+      </div>
+    </header>
+    <main class="container">{% block content %}{% endblock %}</main>
+    <footer class="site-footer">
+      <div class="container">
+        <small>Local preview. Not affiliated with Anki.</small>
+      </div>
+    </footer>
+  </body>
+</html>

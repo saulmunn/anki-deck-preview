@@ -1,0 +1,61 @@
+{% extends 'base.html' %} {% block content %}
+<section class="panel">
+  <div class="browse-header">
+    <h1>Cards ({{ cards|length }})</h1>
+    <input
+      id="search"
+      type="search"
+      placeholder="Search cards…"
+      autocomplete="off"
+    />
+  </div>
+</section>
+
+<section class="cards" id="cards">
+  {% for c in cards %}
+  <article
+    class="card"
+    data-tags="{{ c.tags }}"
+    data-model="{{ c.model_name }}"
+  >
+    <div class="card-inner">
+      <div class="card-face card-front">
+        <div class="card-html">{{ c.front_html|safe }}</div>
+      </div>
+      <div class="card-face card-back">
+        <div class="card-html">{{ c.back_html|safe }}</div>
+      </div>
+    </div>
+    <div class="card-meta">
+      <span class="badge">{{ c.model_name }}</span>
+      {% if c.tags %}<span class="tags">{{ c.tags }}</span>{% endif %}
+      <button class="flip" aria-label="Flip">Flip</button>
+    </div>
+  </article>
+  {% endfor %}
+</section>
+
+<script>
+  const qs = (sel, el = document) => el.querySelector(sel);
+  const qsa = (sel, el = document) => Array.from(el.querySelectorAll(sel));
+
+  // Flip handler
+  qsa(".flip").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const card = e.target.closest(".card");
+      card.classList.toggle("flipped");
+    });
+  });
+
+  // Search filter
+  const search = qs("#search");
+  const cards = qsa("#cards .card");
+  search.addEventListener("input", () => {
+    const term = search.value.trim().toLowerCase();
+    cards.forEach((card) => {
+      const text = card.innerText.toLowerCase();
+      card.style.display = text.includes(term) ? "" : "none";
+    });
+  });
+</script>
+{% endblock %}

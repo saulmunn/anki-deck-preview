@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% block content %}
+<section class="panel">
+  <h1>Upload .apkg deck</h1>
+  <form
+    action="{{ url_for('upload') }}"
+    method="post"
+    enctype="multipart/form-data"
+    class="upload-form"
+  >
+    <input type="file" name="apkg" accept=".apkg" required />
+    <button type="submit">Preview</button>
+  </form>
+  <p class="hint">
+    Your file is processed locally on this machine. Large decks may take a
+    moment.
+  </p>
+</section>
+{% endblock %}
