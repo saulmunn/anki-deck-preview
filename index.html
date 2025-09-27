@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Anki Deck Preview (Static)</title>
+    <link rel="stylesheet" href="static/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="#">Anki Deck Preview</a>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="panel">
+        <h1>Upload .apkg deck</h1>
+        <form class="upload-form" onsubmit="return false;">
+          <input id="file" type="file" accept=".apkg" />
+          <button id="loadBtn" type="button">Preview</button>
+        </form>
+        <p class="hint">
+          Runs entirely in your browser. No data leaves your device.
+        </p>
+      </section>
+
+      <section class="panel" id="summary" style="display: none"></section>
+
+      <section class="panel" id="searchPanel" style="display: none">
+        <div class="browse-header">
+          <h2>Cards</h2>
+          <input
+            id="search"
+            type="search"
+            placeholder="Search cards…"
+            autocomplete="off"
+          />
+        </div>
+      </section>
+
+      <section class="cards" id="cards"></section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <small>Local preview. Not affiliated with Anki.</small>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/fflate@0.8.2/umd/index.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.2/sql-wasm.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/zstddec@0.2.0/dist/zstddec.js"></script>
+    <script src="static/app.js"></script>
+  </body>
+</html>
